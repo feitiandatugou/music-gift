@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>正在为您挑选歌曲...</title>
+    <script>
+        // 在这里填入你的12首歌曲链接
+        var songs = [
+            "https://m.kugou.com/share/song.html?chain=5p6mx0aEwV2",
+            "https://m.kugou.com/share/song.html?chain=5p74Rd9EwV2",
+            "https://m.kugou.com/share/song.html?chain=5p7qTa9EwV2",
+            "https://m.kugou.com/share/song.html?chain=5p7Nzd9EwV2",
+            "https://m.kugou.com/share/song.html?chain=5p8c5b4EwV2",
+            "https://m.kugou.com/share/song.html?chain=5p8Bj76EwV2",
+            "https://m.kugou.com/share/song.html?chain=5p8Vhf7EwV2",
+            "https://m.kugou.com/share/song.html?chain=5p9nP5cEwV2 ",
+            "https://m.kugou.com/share/song.html?chain=5p9Kv14EwV2",
+            "https://m.kugou.com/share/song.html?chain=5pa5z65EwV2",
+            "https://m.kugou.com/share/song.html?chain=5pas968EwV2",
+            "https://m.kugou.com/share/song.html?chain=5paUT2cEwV2 "
+        ];
+
+        // 随机逻辑
+        function playRandomSong() {
+            var randomIndex = Math.floor(Math.random() * songs.length);
+            var selectedSong = songs[randomIndex];
+            // 执行跳转
+            window.location.href = selectedSong;
+        }
+
+        // 页面加载完毕立即执行
+        window.onload = playRandomSong;
+    </script>
+    <style>
+        body {
+            background-color: #fce4ec; /* 浅粉色背景，适合礼物氛围 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #880e4f;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>🎁</h1>
+        <p>正在抽取今日份的音乐...</p>
+    </div>
+</body>
+</html>
