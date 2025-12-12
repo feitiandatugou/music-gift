@@ -3,48 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>一份特别的礼物</title>
+    <title>正在打开酷狗音乐...</title>
     <style>
         body {
-            /* 柔和的粉色渐变背景 */
+            /* 背景颜色 */
             background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
-            height: 100vh; /* 全屏高度 */
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             margin: 0;
-            text-align: center;
-            /* 防止手机点击出现高亮色块 */
-            -webkit-tap-highlight-color: transparent;
+            overflow: hidden; 
         }
-        /* 礼物盒子的样式 */
         .gift-box {
-            font-size: 100px; /* 图标放大 */
-            margin-bottom: 30px;
-            /* 应用跳动动画：名字 时长 无限循环 */
+            font-size: 100px;
+            margin-bottom: 20px;
             animation: bounce 2s infinite;
         }
-        h1 {
-            color: #880e4f;
-            font-size: 26px;
-            margin: 0 0 15px 0;
-            font-weight: normal;
-        }
         p {
-            color: #ad1457;
+            color: #880e4f;
             font-size: 18px;
-            margin: 0;
+            font-family: sans-serif;
+            margin-top: 10px;
         }
-        /* 定义跳动动画的关键帧 */
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); } /* 起点和终点在原位 */
-            50% { transform: translateY(-15px); } /* 中间向上浮动15像素 */
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        /* 隐藏的链接容器 */
+        #hidden-link-container {
+            display: none;
         }
     </style>
+</head>
+<body>
+
+    <div class="gift-box">🎁</div>
+    <p>正在跳转酷狗音乐...</p>
+
+    <div id="hidden-link-container">
+        <a id="music-link" href="" rel="noopener noreferrer">Open Music</a>
+    </div>
+
     <script>
-        // 【重要】在这里填入你的12首酷狗链接
+        // 这里是你整理好的12首歌曲链接（已去除多余空格）
         var songs = [
             "https://m.kugou.com/share/song.html?chain=5p6mx0aEwV2",
             "https://m.kugou.com/share/song.html?chain=5p74Rd9EwV2",
@@ -53,36 +56,32 @@
             "https://m.kugou.com/share/song.html?chain=5p8c5b4EwV2",
             "https://m.kugou.com/share/song.html?chain=5p8Bj76EwV2",
             "https://m.kugou.com/share/song.html?chain=5p8Vhf7EwV2",
-            "https://m.kugou.com/share/song.html?chain=5p9nP5cEwV2 ",
+            "https://m.kugou.com/share/song.html?chain=5p9nP5cEwV2",
             "https://m.kugou.com/share/song.html?chain=5p9Kv14EwV2",
             "https://m.kugou.com/share/song.html?chain=5pa5z65EwV2",
             "https://m.kugou.com/share/song.html?chain=5pas968EwV2",
-            "https://m.kugou.com/share/song.html?chain=5paUT2cEwV2 ",
-            // ... 继续添加，确保格式正确，最后一条后面没有逗号
+            "https://m.kugou.com/share/song.html?chain=5paUT2cEwV2"
         ];
 
-        // 自动跳转函数
-        function autoJump() {
-            // 随机抽取逻辑
+        function jumpToApp() {
             var randomIndex = Math.floor(Math.random() * songs.length);
             var selectedSong = songs[randomIndex];
             
-            // 执行跳转
-            // 使用 replace 而不是 href，这样用户按返回键不会又回到这个中转页
-            window.location.replace(selectedSong);
+            // 获取隐藏的链接元素
+            var link = document.getElementById('music-link');
+            link.href = selectedSong;
+            
+            // 模拟点击行为 (比直接 location 跳转唤醒 APP 的成功率更高)
+            link.click();
+
+            // 如果模拟点击没有反应，0.5秒后执行强制跳转兜底
+            setTimeout(function() {
+                window.location.replace(selectedSong);
+            }, 500);
         }
 
-        // 页面加载完成后，立即执行跳转函数
-        // 浏览器可能会拦截这里的操作
-        window.onload = autoJump;
+        // 页面加载完成后立即执行
+        window.onload = jumpToApp;
     </script>
-</head>
-<body>
-
-    <div class="gift-box">🎁</div>
-    
-    <h1>正在拆开你的礼物...</h1>
-    <p>请稍候，即将播放</p>
-
-    </body>
+</body>
 </html>
