@@ -6,55 +6,45 @@
     <title>一份特别的礼物</title>
     <style>
         body {
+            /* 柔和的粉色渐变背景 */
             background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
-            height: 100vh;
+            height: 100vh; /* 全屏高度 */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             margin: 0;
             text-align: center;
+            /* 防止手机点击出现高亮色块 */
+            -webkit-tap-highlight-color: transparent;
         }
+        /* 礼物盒子的样式 */
         .gift-box {
-            font-size: 80px;
-            margin-bottom: 20px;
+            font-size: 100px; /* 图标放大 */
+            margin-bottom: 30px;
+            /* 应用跳动动画：名字 时长 无限循环 */
             animation: bounce 2s infinite;
-            cursor: pointer;
         }
         h1 {
             color: #880e4f;
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 26px;
+            margin: 0 0 15px 0;
+            font-weight: normal;
         }
         p {
             color: #ad1457;
-            font-size: 16px;
-            margin-bottom: 40px;
-        }
-        .btn {
-            background-color: #ec407a;
-            color: white;
-            border: none;
-            padding: 15px 40px;
             font-size: 18px;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(236, 64, 122, 0.4);
-            cursor: pointer;
-            transition: transform 0.2s;
-            text-decoration: none; /* 确保链接没下划线 */
-            -webkit-tap-highlight-color: transparent;
+            margin: 0;
         }
-        .btn:active {
-            transform: scale(0.95);
-        }
+        /* 定义跳动动画的关键帧 */
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: translateY(0); } /* 起点和终点在原位 */
+            50% { transform: translateY(-15px); } /* 中间向上浮动15像素 */
         }
     </style>
     <script>
-        // 在这里填入你的酷狗链接
+        // 【重要】在这里填入你的12首酷狗链接
         var songs = [
             "https://m.kugou.com/share/song.html?chain=5p6mx0aEwV2",
             "https://m.kugou.com/share/song.html?chain=5p74Rd9EwV2",
@@ -68,30 +58,31 @@
             "https://m.kugou.com/share/song.html?chain=5pa5z65EwV2",
             "https://m.kugou.com/share/song.html?chain=5pas968EwV2",
             "https://m.kugou.com/share/song.html?chain=5paUT2cEwV2 ",
-            // ... 把你的12个链接放这里
+            // ... 继续添加，确保格式正确，最后一条后面没有逗号
         ];
 
-        function openGift() {
-            var btn = document.querySelector('.btn');
-            btn.innerText = "正在拆开...";
+        // 自动跳转函数
+        function autoJump() {
+            // 随机抽取逻辑
+            var randomIndex = Math.floor(Math.random() * songs.length);
+            var selectedSong = songs[randomIndex];
             
-            setTimeout(function(){
-                var randomIndex = Math.floor(Math.random() * songs.length);
-                var selectedSong = songs[randomIndex];
-                // 使用 location.replace 可以避免用户点“返回”键又回到这个页面
-                window.location.replace(selectedSong); 
-            }, 800); // 延迟0.8秒跳转，让用户看到文字变化
+            // 执行跳转
+            // 使用 replace 而不是 href，这样用户按返回键不会又回到这个中转页
+            window.location.replace(selectedSong);
         }
+
+        // 页面加载完成后，立即执行跳转函数
+        // 浏览器可能会拦截这里的操作
+        window.onload = autoJump;
     </script>
 </head>
 <body>
 
-    <div class="gift-box" onclick="openGift()">🎁</div>
+    <div class="gift-box">🎁</div>
     
-    <h1>送给你的一份歌单</h1>
-    <p>点击按钮，抽取今天的专属BGM</p>
+    <h1>正在拆开你的礼物...</h1>
+    <p>请稍候，即将播放</p>
 
-    <button class="btn" onclick="openGift()">点击拆开礼物</button>
-
-</body>
+    </body>
 </html>
